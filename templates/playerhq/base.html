@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>Home</title>
+	<link href="static/css/base.css" rel="stylesheet">
+</head>
+<body bgcolor="#1CAB08">
+	<header class="heade">
+		<img src="{% static 'images/playerhq1.png' %}" alt="Logo" />
+		<input class="button" type="submit" value="Log in"/>
+
+  		<input class="button1" type="submit" value="Sign in"/>
+	</header>
+	<hr/>
+		<div class="topnav">
+		  <a  href="#home">Others</a>
+		  <a href="#about">RPGs</a>
+		  <a href="#contact">Superhero</a>
+		  <a class="active"href="#contact">Racing</a>
+		  <input type="search" placeholder="Search..">
+		</div>
+	<hr/>
+	<div>
+	{% block body_block %}
+	{% endblock %}
+	</div>
+	<footer class="foo">
+		<a href="{% url 'playerhq:about' %}">About</a> || 
+		<a href="#myaccount"> My Account</a>
+	</footer>
+</body>
+</html>
