@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'playerhq/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	<title> {{ game.GameName }} </title>
+{% endblock %}
+
+{% block body_block %}
+
+	<h1> Rating: {{ game.GameRating }} </h1>
+	<p> Category: {{ game.GameCategory }} </p>
+	<p> Description: {{ game.Gamedescription }} </p>
+	<img src="{{ game.GameImage.url }}" class="img-responsive" style=" float: left; margin-right: 10px;" />
+	<h2> Reviews  </h2>
+	{% for review in reviews %}
+		<p> 
+			{{review.GameName}}<br/>
+			{{review.ReviewerName}}:</br>
+			Graphics: {{review.Graphics}}</br>
+			Storyline: {{review.Storyline}}</br>
+			Gameplay: {{review.Gameplay}}</br>
+			{{review.Review}} <br/>
+		
+			
+		</p>
+	
+
+	{% for com in comments %}
+		{% if com.GameName == review.GameName %}
+		<p>
+		Comments:<br/>
+		{{com.CommentName}}<br/>
+		{{com.Comments}}
+		</p>
+		{% endif%}
+	{%endfor%}
+	{% endfor %}
+	
+
+
+	
+
+	<!--
+	{% for gam in games_images %} 
+        <div class="col-md-4"> 
+            {{ gam.name }} 
+            <img src="{{ gam.games_images.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /> 
+        </div> 
+    {% endfor %} 
+	-->
+{% endblock %}

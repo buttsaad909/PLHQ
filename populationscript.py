@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'PLHQ.settings')
 import django
 django.setup()
-from playerhq.models import Games,Reviews, Comments
+from playerhq.models import Games,Reviews, Comments, Categories
 
 def populate():
     
@@ -13,8 +13,8 @@ def populate():
     #              {'SuperHero': ['Spiderman 2', 'Injustice', 'Batman Arkham Asylum', 'X Men Origins']}, 
     #              {'Others': ['Call Of Duty', 'Metal Gear Solid', 'GTA V', 'Mario', metal gear solid, battlefield, uncharted 4, wold among us]}]
     
-    RPGs = [{'gamename':'The Last Of Us', 'gamerating': 5, 'gamedescription': 'The Last of Us is a 2013 action-adventure survival horror video game developed by Naughty Dog and published by Sony Computer Entertainment. Players control Joel, a smuggler tasked with escorting a teenage girl, Ellie, across a post-apocalyptic United States. The Last of Us is played from a third-person perspective.', 'gamecategory': 'RPGs'},
-            {'gamename':'The Witcher 3', 'gamerating': 5, 'gamedescription': 'The Witcher 3: Wild Hunt is a 2015 action role-playing game developed and published by CD Projekt and based on The Witcher series of fantasy novels by Andrzej Sapkowski. It is the sequel to the 2011 game The Witcher 2: Assassins of Kings, played in an open world with a third-person perspective.', 'gamecategory': 'RPGs'},
+    RPGs = [ {'gamename':'The Witcher 3', 'gamerating': 5, 'gamedescription': 'The Witcher 3: Wild Hunt is a 2015 action role-playing game developed and published by CD Projekt and based on The Witcher series of fantasy novels by Andrzej Sapkowski. It is the sequel to the 2011 game The Witcher 2: Assassins of Kings, played in an open world with a third-person perspective.', 'gamecategory': 'RPGs'},
+            {'gamename':'The Last Of Us', 'gamerating': 5, 'gamedescription': 'The Last of Us is a 2013 action-adventure survival horror video game developed by Naughty Dog and published by Sony Computer Entertainment. Players control Joel, a smuggler tasked with escorting a teenage girl, Ellie, across a post-apocalyptic United States. The Last of Us is played from a third-person perspective.', 'gamecategory': 'RPGs' },
            {'gamename':'The Elder Scrolls V: Skyrim', 'gamerating': 4, 'gamedescription': 'The Elder Scrolls V: Skyrim is an action role-playing game, playable from either a first or third-person perspective. The player may freely roam over the land of Skyrim which is an open world environment consisting of wilderness expanses, dungeons, cities, towns, fortresses, and villages.', 'gamecategory': 'RPGs'},
             {'gamename':'Mass Effect 3', 'gamerating': 3, 'gamedescription': 'Mass Effect 3 is an action role-playing game in which the player takes control of Commander Shepard from a third-person perspective. Shepards gender, appearance, military background, combat training, and first name are determined by the player before the game begins.', 'gamecategory': 'RPGs'},
             {'gamename':'Legend Of Zelda Breath of the Wild', 'gamerating': 3, 'gamedescription': 'Similar to the original Legend of Zelda (1986), players are given little instruction and can explore the open world freely. Tasks include collecting multipurpose items to aid in objectives or solving puzzles and side quests for rewards. The world is unstructured and designed to reward experimentation, and the story can be completed in a nonlinear fashion.', 'gamecategory': 'RPGs'},
@@ -116,8 +116,9 @@ def populate():
                   }
     
     for cat, cat_data in categories.items():
-        
+        add_category(cat)
         for p in cat_data['game']:
+
             add_game(p['gamename'], p['gamerating'], p['gamedescription'], p['gamecategory'])
             
             for x in cat_data['review']:
@@ -130,6 +131,13 @@ def populate():
                         if z['gamename'] == x['gamename']:
                             a = add_review(d,x['gamename'], x['reviewername'], x['review'],x['graphics'], x['storyline'], x['gameplay'])
                             add_comment(a,z['gamename'],z['commentname'], z['comment'] )
+
+def add_category(catName):
+    c = Categories.objects.get_or_create(catName=catName)[0]
+    c.catName = catName
+    c.save()
+    return c
+
     
 def add_review(cat, GameName, ReviewerName, Review, Graphics,Storyline,Gameplay):
     a = Reviews.objects.get_or_create(games=cat, GameName=GameName)[0]

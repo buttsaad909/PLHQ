@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'playerhq/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+{% endblock %}
+
+{% block body_block %}
+
+<h1>Add a Review to {{category.GameName}}</h1>
+
+    <form id="page_form" method="post" action="/playerhq/category/{{ category.slug }}/review/">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+		{{ form2.as_p }}
+
+        <input type="submit" name="submit" value="Add a Game" />
+    </form>
+
+{% endblock %}

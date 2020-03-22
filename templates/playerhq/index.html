@@ -6,4 +6,26 @@
 {% endblock %}
 
 {% block body_block %}
+
+<h2>Leaderboard</h2>
+	{% if games%}
+	    <ul>
+	    {% for game in games%}
+	 	<li>
+		    <p>
+			<a href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a>
+			
+		    </p>
+		</li>
+	    {% endfor %}
+	    </ul> 	    
+        {% else %}
+	    <strong>There are no games present.</strong>
+	{% endif %}
+	<aside style="float: left">
+	{% if topGame %}
+		<h3>Number 1 Game: {{topGame.GameName}}</h3>
+		<img src="{{ topGame.GameImage.url }}" class="img-responsive" style="float: left; margin-left: 10px;" />
+	{% endif %}
+	</aside>
 {% endblock %}

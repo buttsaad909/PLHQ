@@ -13,6 +13,24 @@
 			cursor: pointer;
 			display: block;
 		}
+
+		.butt2{
+			float:right; 
+			background-color: #f44336; 
+			border-radius: 12px;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		  	border: none;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 18px;
+			position: relative;
+			margin: 150px -120px;
+			cursor: pointer;
+			display: block;
+		}
+
 		.button1{
 			float:right; 
 			background-color: #f44336; 
@@ -25,29 +43,12 @@
 			display: inline-block;
 			font-size: 18px;
 			position: relative;
-			margin: 90px -120px;
+			margin: 85px -120px;
 			cursor: pointer;
 			display: block;
 		}
 		.button:not(:last-child) {
 			border-bottom: none;
-		}
-
-		.butt2{
-			float:right; 
-			background-color: black; 
-			border-radius: 12px;
-			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-		  	border: none;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 18px;
-			position: relative;
-			margin: 160px -120px;
-			cursor: pointer;
-			display: block;
 		}
 
 		.topnav {

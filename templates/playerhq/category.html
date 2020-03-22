@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'playerhq/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	<title> {{ catName.catName }} </title>
+{% endblock %}
+
+{% block body_block %}
+	<h1> {{ catName.catName }} </h1>
+	{% for game in games %}
+		<p><a href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a> </pre>
+		Rating: {{game.GameRating}} </p>
+	{% endfor %}
+	<br/>
+	<a href="{% url 'playerhq:review' catName.slug %}">Make review</a>
+{% endblock %}

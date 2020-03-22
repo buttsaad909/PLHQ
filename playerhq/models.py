@@ -11,28 +11,31 @@ class Users(models.Model):
     def __str__(self):
         return self.username
     
-#class Categories(models.Model):
-#    TITLE_MAX_LENGTH = 128
-    
-#    RPGs = models.CharField(max_length=TITLE_MAX_LENGTH, blank = True)
-#    Racing = models.CharField(max_length=TITLE_MAX_LENGTH, blank = True)
-#    SuperHero = models.CharField(max_length=TITLE_MAX_LENGTH, blank = True)
-#    Others = models.CharField(max_length=TITLE_MAX_LENGTH, blank = True)
-    
-#    def __str__(self):
-#        return self.RPGs, self.Racing, self.SuperHeoro, self.Others
-    
-class Games(models.Model):
+class Categories(models.Model):
     TITLE_MAX_LENGTH = 128
     
     #user = models.ManyToManyField(Users, on_delete=models.CASCADE)
     #categories = models.ForeignKey(Categories, on_delete=models.CASCADE)
     #GameID = models.IntegerField(default=0, primary_key=True)
+    catName = models.CharField(max_length=TITLE_MAX_LENGTH, default ="")
+    
+    slug = models.SlugField(blank=True)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.catName)
+        super(Categories, self).save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.catName
+    
+class Games(models.Model):
+    TITLE_MAX_LENGTH = 128
+    
     GameName = models.CharField(max_length=TITLE_MAX_LENGTH, default ="")
     GameRating = models.IntegerField(default=0)
-    GameImage = models.ImageField(upload_to='profile_images', blank=True)
+    GameImage = models.ImageField(upload_to='images/', blank=True)
     Gamedescription = models.TextField(max_length = 200)
-    GameCategory = models.CharField(max_length=50, blank = True )
+    GameCategory = models.CharField(max_length=50)
     
     slug = models.SlugField(blank=True)
     
@@ -50,7 +53,7 @@ class Reviews(models.Model):
     games = models.ForeignKey(Games, on_delete=models.CASCADE)
     #ReviewID = models.IntegerField(default=0, primary_key=True)
     GameName = models.CharField(max_length=TITLE_MAX_LENGTH, default ="")
-    GameImage = models.ImageField(upload_to='profile_images', blank=True)
+    GameImage = models.ImageField(upload_to='images/', blank=True)
     ReviewerName = models.CharField(max_length=TITLE_MAX_LENGTH)
     Review = models.TextField(max_length = 200)
     Graphics = models.IntegerField(default=0)

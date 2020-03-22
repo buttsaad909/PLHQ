@@ -4,22 +4,28 @@
 <html>
 <head>
 	<title>Home</title>
-	<link href="static/css/base.css" rel="stylesheet">
+	<link href="/static/css/vv.css" rel="stylesheet">
 </head>
 <body bgcolor="#1CAB08">
 	<header class="heade">
 		<img src="{% static 'images/playerhq1.png' %}" alt="Logo" />
-		<input class="button" type="submit" value="Log in"/>
-
-  		<input class="button1" type="submit" value="Sign in"/>
+		<input class="button" onclick="window.location.href ='{% url 'playerhq:login' %}';" type="submit" value="Log in"/>
+		<input class="butt2" type="submit" onclick="window.location.href={% url 'playerhq:index' %};" value="Home"/>
+  		<input class="button1" onclick="window.location.href ='{% url 'playerhq:signup' %}';" type="submit" value="Sign in"/>
 	</header>
+	{% if user.is_authenticated %}
+		Welcome, {{ user.username }}, to the PlayersHQ!
+	    {% else %}
+                Welcome, to the PlayersHQ! <br />
+	    {% endif %}
 	<hr/>
 		<div class="topnav">
-		  <a  href="#home">Others</a>
-		  <a href="#about">RPGs</a>
-		  <a href="#contact">Superhero</a>
-		  <a class="active"href="#contact">Racing</a>
-		  <input type="search" placeholder="Search..">
+		{% if categories %}
+			{% for category in categories %}
+				<a href="{% url 'playerhq:category' category.slug %}">{{ category.catName}}</a>
+			{%endfor%}
+		{% endif %}
+		  <input type="search" placeholder="Search...">
 		</div>
 	<hr/>
 	<div>
@@ -27,8 +33,7 @@
 	{% endblock %}
 	</div>
 	<footer class="foo">
-		<a href="{% url 'playerhq:about' %}">About</a> || 
-		<a href="#myaccount"> My Account</a>
+		<a href="{% url 'playerhq:about' %}">About</a>
 	</footer>
 </body>
 </html>
