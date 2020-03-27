@@ -4,28 +4,36 @@
 <html>
 <head>
 	<title>Home</title>
-	<link href="/static/css/vv.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="{% static 'css/new3.css' %}" rel="stylesheet" type="text/css">
 </head>
-<body bgcolor="#1CAB08">
-	<header class="heade">
-		<img src="{% static 'images/playerhq1.png' %}" alt="Logo" />
-		<input class="button" onclick="window.location.href ='{% url 'playerhq:login' %}';" type="submit" value="Log in"/>
+<body class="p-3 mb-2 bg-dark text-white" background="{% static 'images/bg4.jpg' %}" style = "background-repeat: no-repeat;
+  background-attachment: fixed;">
+	<header>
+		<img src="{% static 'images/new22.png' %}" alt="Logo" />
+		<input class="butt" onclick="window.location.href ='{% url 'playerhq:login' %}';" type="submit" value="Log in"/>
 		<input class="butt2" type="submit" onclick="window.location.href={% url 'playerhq:index' %};" value="Home"/>
-  		<input class="button1" onclick="window.location.href ='{% url 'playerhq:signup' %}';" type="submit" value="Sign in"/>
-	</header>
-	{% if user.is_authenticated %}
+  		<input class="butt1" onclick="window.location.href ='{% url 'playerhq:signup' %}';" type="submit" value="Sign in"/>
+		<span style="font-family: 'Lobster', cursive; font-size: 42px;  color: #FFFFFF; font-weight: bold;">
+  		{% if user.is_authenticated %}
 		Welcome, {{ user.username }}, to the PlayersHQ!
 	    {% else %}
                 Welcome, to the PlayersHQ! <br />
 	    {% endif %}
+		</span>
+	</header>
+	
 	<hr/>
-		<div class="topnav">
+		<div class="navbar sticky-top navbar-light" style="background-color: #e3f2fd;">
 		{% if categories %}
 			{% for category in categories %}
-				<a href="{% url 'playerhq:category' category.slug %}">{{ category.catName}}</a>
+				<a class="navbar-brand" href="{% url 'playerhq:category' category.slug %}">{{ category.catName}}</a>
 			{%endfor%}
 		{% endif %}
-		  <input type="search" placeholder="Search...">
+		 	<a class="navbar-brand" href="{% url 'playerhq:about' %}">About</a>
 		</div>
 	<hr/>
 	<div>
@@ -33,7 +41,10 @@
 	{% endblock %}
 	</div>
 	<footer class="foo">
-		<a href="{% url 'playerhq:about' %}">About</a>
+		
 	</footer>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

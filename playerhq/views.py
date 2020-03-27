@@ -13,7 +13,7 @@ def index(request):
     context_dict['categories'] = Categories.objects.order_by('catName')
     context_dict['games'] = games_list
     context_dict['image'] = Games.objects.order_by('GameImage')
-    context_dict['topGame'] = Games.objects.order_by('GameRating')[0]
+    context_dict['topGame'] = Games.objects.order_by('-GameRating')[0]
     
     return render(request, 'playerhq/index.html', context_dict)
 

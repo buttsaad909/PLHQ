@@ -7,11 +7,60 @@
 {% endblock %}
 
 {% block body_block %}
-	<h1> {{ catName.catName }} </h1>
-	{% for game in games %}
-		<p><a href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a> </pre>
-		Rating: {{game.GameRating}} </p>
-	{% endfor %}
-	<br/>
-	<a href="{% url 'playerhq:review' catName.slug %}">Make review</a>
+<div class="container">
+		<h1> {{ catName.catName }} </h1>
+	<div class="row justify-content-center">
+		<div class="col-4">
+			<h3>Games!</h3>
+			{% for game in games %}
+				<p><a class="lio" href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a> </p>
+			{% endfor %}
+			<br/>
+		</div>
+		<div class="col-4">
+			<h3>Overall Ratings</h3>
+			{% for game in games %}
+				{% if game.GameRating == 1 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				{% endif %}
+				{% if game.GameRating == 2 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				{% endif %}
+				{% if game.GameRating == 3 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				{% endif %}
+				{% if game.GameRating == 4 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+				{% endif %}
+				{% if game.GameRating == 5 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+				{% endif %}
+				<br/>
+				<br/>
+			{% endfor %}
+			<br/>
+		</div>
+	</div>
+</div>
+	<a href="{% url 'playerhq:review' catName.slug %}" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Make review</a>
 {% endblock %}

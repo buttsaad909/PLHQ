@@ -6,26 +6,36 @@
 {% endblock %}
 
 {% block body_block %}
+<div class="container">
+	<p class = "para" bg = "white">
+		Welcome to the Player Head Quarters! Brace yourself players, a huge wave of reviews lies ahead from this point on. You have your last chance to equip yourself with all the knowledge and games that you may end up facing. 
+		PlayerHQ is the favourite page for hardcore gamers who are interested in finding games that suit their taste and interests and if anyone who is new to gaming finds this wonderful hub with tons of gamng reviews written by professioal gamers, experience authors and the writers who want to promote their games!
+		So we won't take much of your time, hence, to get you started, here is a list of the top rated games you guys should check out!
+	</p>
+	<div  class="row">
+		<div class="col">
+			<h1 style="font-family: monospace;">Leaderboard</h1>
 
-<h2>Leaderboard</h2>
-	{% if games%}
-	    <ul>
-	    {% for game in games%}
-	 	<li>
-		    <p>
-			<a href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a>
-			
-		    </p>
-		</li>
-	    {% endfor %}
-	    </ul> 	    
-        {% else %}
-	    <strong>There are no games present.</strong>
-	{% endif %}
-	<aside style="float: left">
-	{% if topGame %}
-		<h3>Number 1 Game: {{topGame.GameName}}</h3>
-		<img src="{{ topGame.GameImage.url }}" class="img-responsive" style="float: left; margin-left: 10px;" />
-	{% endif %}
-	</aside>
+			    {% if games%}
+			    <table style= "float: left; margin-left:auto; margin-right:auto;">
+			    {% for game in games%}
+			 	<tr>
+			 		<th>
+					<a class="lio" href="{% url 'playerhq:game' game.slug %}">{{ game.GameName}}</a>
+					</th>
+				</tr>
+			    {% endfor %}
+			    </table> 	    
+		        {% else %}
+			    <strong>There are no games present.</strong>
+			{% endif %}
+		</div>
+		<div class="col">
+		    {% if topGame %}
+			<h3>Leading Game: {{topGame.GameName}}</h3>
+			<img src="{{ topGame.GameImage.url }}" class="img-responsive" style="height: 300px; width: 270px; border: 5px solid #000000;"/>
+			{% endif %}
+		</div>
+	</div>
+</div>	
 {% endblock %}

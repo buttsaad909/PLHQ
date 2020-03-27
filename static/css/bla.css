@@ -1,3 +1,5 @@
+		@import "../node_modules/bootstrap/scss/bootstrap";
+
 		.butt{
 			float:right; 
 			background-color: #f44336; 
@@ -149,4 +151,9 @@
 
 		a.lio:hover, a.lio:active {
 		  background-color: red;
+		}
+
+		p.para {
+			font-family: monospace;
+			font-size: 14px;
 		}

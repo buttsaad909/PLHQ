@@ -1,3 +1,5 @@
+		@import "../node_modules/bootstrap/scss/bootstrap";
+
 		.butt{
 			float:right; 
 			background-color: #f44336; 
@@ -10,6 +12,7 @@
 			display: inline-block;
 			font-size: 20px;
 			margin: 20px 2px;
+			position: relative;
 			cursor: pointer;
 			display: block;
 		}
@@ -149,4 +152,13 @@
 
 		a.lio:hover, a.lio:active {
 		  background-color: red;
+		}
+
+		p.para {
+			font-family: monospace;
+			font-size: 22px;
+		}
+		.checked {
+		  color: orange;
+		  font-size: 45px;
 		}
