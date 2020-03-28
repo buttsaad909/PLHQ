@@ -7,7 +7,7 @@ Login
 {% endblock %}
 
 {% block body_block %}
-<center style="font-family: monospace; font-size: 40px; font-weight: bold;">Login to the PlayerHQ!</center>
+<center style="font-family: monospace; font-size: 40px; font-weight: bold; color: #FFFFFF">Login to the PlayerHQ!</center>
 <form class="login-form" id="login_form" method="post" action="{% url 'playerhq:login' %}">
   {% csrf_token %}
   <input type="text" class="login-username" name="username" autofocus="true" required="true" placeholder="Username" size="50" />

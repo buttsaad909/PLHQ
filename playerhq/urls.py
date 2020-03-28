@@ -20,5 +20,6 @@ urlpatterns = [
     #path('<slug:game_name_slug>/review/', views.review, name='reviews'),
     path('category/<slug:category_name_slug>/', views.category, name='category'),
     path('category/<slug:category_name_slug>/review/', views.review, name= 'review'),
+    path('logout/', views.user_logout, name='logout'),
 ]
 

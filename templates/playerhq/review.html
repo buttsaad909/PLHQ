@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% extends 'playerhq/base.html' %}
 {% load staticfiles %}
+{% load widget_tweaks %}
+
 
 {% block title_block %}
 {% endblock %}
@@ -10,12 +12,33 @@
 <h1>Add a Review to {{category.GameName}}</h1>
 
     <form id="page_form" method="post" action="/playerhq/category/{{ category.slug }}/review/">
+    {% if registered %}
+	    <strong>Thank you for Adding a review!</strong>
+	    <a href="{% url 'playerhq:index' %}">Return to the homepage.</a><br />
+	{% else %}
+    <strong>Register here!</strong><br />
+    {% csrf_token %}
+	{% for field in form.visible_fields %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    {% for field in form2.visible_fields %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
 
-        {% csrf_token %}
-        {{ form.as_p }}
-		{{ form2.as_p }}
 
-        <input type="submit" name="submit" value="Add a Game" />
+	<input type="submit" class="btn btn-primary" name="submit" value="Add a Game" />
     </form>
-
+{% endif %}
 {% endblock %}

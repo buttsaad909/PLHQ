@@ -91,7 +91,7 @@ def user_login(request):
 #        return render((request, 'playerhq/index.html', 
 #                     {'games_images' : Games})) 
 
-
+@login_required
 def review(request, category_name_slug):
     registered = False
     try:
@@ -116,7 +116,8 @@ def review(request, category_name_slug):
                 profile.GameImage = request.FILES['picture']
             profile.save()
             registered = True
-            return redirect('/playerhq/')
+            return redirect(reverse('playerhq:category', kwargs=
+                                        {'category_name_slug': category_name_slug}))
         else:
             print(form.errors, form2.errors)
     context_dict = {'form': form, 'category': category, 'game': category2, 'form2':form2, 'registered': registered}

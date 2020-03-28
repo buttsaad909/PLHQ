@@ -8,23 +8,26 @@
 
 {% block body_block %}
 
-	<h1> Rating: {{ game.GameRating }} </h1>
-	<p> Category: {{ game.GameCategory }} </p>
-	<p> Description: {{ game.Gamedescription }} </p>
-	<img src="{{ game.GameImage.url }}" class="img-responsive" style=" float: left; margin-right: 10px;" />
-	<h2> Reviews  </h2>
+	<h1> Game Review </h1>
 	{% for review in reviews %}
-		<p> 
-			{{review.GameName}}<br/>
+	<div>
+	<img src="{{ game.GameImage.url }}" class="img-responsive" style=" float: left; margin-right: 10px; border: 5px solid #000000;" />
+	</div>
+	<div class="container">
+			<h2>{{review.GameName}}</h2><br/>
+			<p>Rating: {{ game.GameRating }} </p>
+		<p> Category: {{ game.GameCategory }} </p>
+		<p> Description: {{ game.Gamedescription }} </p>
+		<hr> </hr>
+		</div>
+		<div>
 			{{review.ReviewerName}}:</br>
 			Graphics: {{review.Graphics}}</br>
 			Storyline: {{review.Storyline}}</br>
 			Gameplay: {{review.Gameplay}}</br>
 			{{review.Review}} <br/>
-		
-			
-		</p>
-	
+		</div>
+			<hr></hr>
 
 	{% for com in comments %}
 		{% if com.GameName == review.GameName %}
@@ -36,11 +39,7 @@
 		{% endif%}
 	{%endfor%}
 	{% endfor %}
-	
-
-
-	
-
+<hr> </hr>
 	<!--
 	{% for gam in games_images %} 
         <div class="col-md-4"> 

@@ -11,7 +11,7 @@
 			text-decoration: none;
 			display: inline-block;
 			font-size: 20px;
-			margin: 20px 2px;
+			margin: 2px 2px;
 			position: relative;
 			cursor: pointer;
 			display: block;
@@ -29,7 +29,7 @@
 			display: inline-block;
 			font-size: 18px;
 			position: relative;
-			margin: 150px -120px;
+			margin: 125px -120px;
 			cursor: pointer;
 			display: block;
 		}
@@ -46,7 +46,24 @@
 			display: inline-block;
 			font-size: 18px;
 			position: relative;
-			margin: 85px -120px;
+			margin: 65px -120px;
+			cursor: pointer;
+			display: block;
+		}
+
+		.butt3{
+			float:right; 
+			background-color: #f44336; 
+			border-radius: 12px;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		  	border: none;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 18px;
+			position: relative;
+			margin: 185px -120px;
 			cursor: pointer;
 			display: block;
 		}
@@ -154,13 +171,17 @@
 		  background-color: red;
 		}
 
-		p.para {
+		.para {
 			font-family: monospace;
 			font-size: 22px;
+			font-weight: bold;
 		}
 		.checked {
 		  color: orange;
-		  font-size: 45px;
+		  font-size: 60px;
+		}
+		html {
+		  box-sizing: border-box;
 		}
 
 		*, *:before, *:after {
@@ -232,4 +253,131 @@
 		  background-repeat: no-repeat;
 		  background-attachment: fixed;
 		  background-size: cover;
+		}
+		@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700);
+		@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+		input {
+		 ::-webkit-input-placeholder {
+		color: black(255,255,255,0.7);
+		 }
+		 ::-moz-placeholder {
+		color: black(255,255,255,0.7);  
+		 }
+		 :-ms-input-placeholder {  
+		color: black(255,255,255,0.7);  
+		 }
+		 &:focus {
+		outline: 1 solid;
+		::-webkit-input-placeholder {
+		color: black(0,0,0,0.7);
+		}
+		::-moz-placeholder {
+		  color: black(0,0,0,0.7);  
+		}
+		:-ms-input-placeholder {  
+		  color: black(0,0,0,0.7);  
+		}
+		 }
+		}
+
+		.login-form {
+		 //background: #222;
+		 //box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+		 min-height: 10rem;
+		 margin: auto;
+		 max-width: 50%;
+		 padding: .5rem;
+		}
+		.login-text {
+		 //background: hsl(40,30,60);
+		 //border-bottom: .5rem solid white;
+		 color: red;
+		 font-size: 1.5rem;
+		 margin: 0 auto;
+		 max-width: 50%;
+		 padding: .5rem;
+		 text-align: center;
+		 //text-shadow: 1px -1px 0 rgba(0,0,0,0.3);
+		 .fa-stack-1x {
+		color: black;
+		 }
+		}
+
+		.login-username, .login-password {
+		 background: black;
+		 border: 0 solid;
+		 border-bottom: 1px solid rgba(white, .5);
+		 color: blue;
+		 display: block;
+		 margin: 1rem;
+		 padding: .5rem;
+		 transition: 250ms background ease-in;
+		 width: calc(100% - 3rem);
+		 &:focus {
+		background: white;
+		color: black;
+		transition: 250ms background ease-in;
+		 }
+		}
+
+
+		.login-submit {
+		 border: 1px solid white;
+		 background: black;
+		 color: white;
+		 display: block;
+		 margin: 1rem auto;
+		 min-width: 1px;
+		 padding: 1rem;
+		 transition: 250ms background ease-in;
+		 &:hover, &:focus {
+		background: white;
+		color: black;
+		transition: 250ms background ease-in;
+		 }
+		}
+		.footer{
+			background-color: #000000;
+			width: 102.3%;
+			bottom: 0;
+			height: 8rem; 
+			margin-left: -1.2%;
+		}
+		.fa {
+		  padding : 30px;
+		  font-size: 30px;
+		  width: 30px;
+		  text-align: center;
+		  text-decoration: none;
+		  margin: 5px 2px;
+		  border-radius: 100%;
+		}
+
+		.fa:hover {
+		    opacity: 0.7;
+		}
+
+		.fa-facebook {
+		  color: white;
+		}
+
+		.fa-twitter {
+		  color: white;
+		}
+		.fa-instagram {
+		  color: white;
+		}
+
+		html,
+		body {
+		 height: 100%;
+		 position: relative;
+		}
+		.main-container {
+		 min-height: 100vh; /* will cover the 100% of viewport */
+		 overflow: hidden;
+		 display: block;
+		 position: relative;
+		 padding-bottom: 100px; /* height of your footer */
 		}
