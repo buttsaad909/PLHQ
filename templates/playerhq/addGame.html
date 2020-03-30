@@ -3,22 +3,17 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 
-
 {% block title_block %}
 {% endblock %}
 
 {% block body_block %}
 
-<h1>Add a Review to {{category.GameName}}</h1>
+<h1>Add a Game</h1>
 
-    <form id="page_form" method="post" action="/playerhq/category/{{ category.slug }}/review/">
-    {% if registered %}
-	    <strong>Thank you for Adding a review!</strong>
-	    <a href="{% url 'playerhq:index' %}">Return to the homepage.</a><br />
-	{% else %}
-    <strong>Register here!</strong><br />
-    {% csrf_token %}
-	{% for field in form.visible_fields %}
+<div>
+	<form id="game_form"  enctype="multipart/form-data" method="post" action="/playerhq/category/{{category.slug}}/addGameReview/">
+	{% csrf_token %}
+	{% for field in form2.visible_fields %}
       <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
         {{ field|add_class:'form-control' }}
@@ -27,7 +22,8 @@
         {% endfor %}
       </div>
     {% endfor %}
-    {% for field in form2.visible_fields %}
+    {{ form3.as_p}}
+    {% for field in form.visible_fields %}
       <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
         {{ field|add_class:'form-control' }}
@@ -37,8 +33,7 @@
       </div>
     {% endfor %}
 
-
-	<input type="submit" class="btn btn-primary" name="submit" value="Add a Game" />
-    </form>
-{% endif %}
+		<input type="submit" class="btn btn-primary" name="submit" value="Add Game" />
+	</form>
+</div>
 {% endblock %}

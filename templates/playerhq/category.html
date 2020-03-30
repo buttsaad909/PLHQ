@@ -8,7 +8,25 @@
 
 {% block body_block %}
 <div class="container">
-		<h1> {{ catName.catName }} </h1>
+		<h1> 
+			{{ catName.catName }} 
+		</h1>
+		<div class="trans">
+			<p class = "para">
+				{% if catName.catName == "RPGs" %}
+					Everyone knows what a role-playing game is. I mean, it’s so obvious, why even talk about it? They’re those games where you take the role of a protagonist who must face down world-beating odds to save the universe. You meet lots of cool characters, gain new skills and abilities, fight gnarly monsters, and watch an epic story unfold: your story.
+				{% endif %}
+				{% if catName.catName == "Others" %}
+					Well you are mistaken if you think that is all to categorise the games into. There are loads of other genere to discover and take inspiration from such as shooting, strategical, adventure to name a few. So hae look at the final bit of piece of our collection which tries enclose all the other remanining categories to deal with!
+				{% endif %}
+				{% if catName.catName == "SuperHero" %}
+					The best superhero games make you feel like you're actually embodying the powers and responsibilities that define your favorite heroes. Reading about their righteous actions in comics is one thing, but getting to control them as they fight crime and defeat the forces of evil is something else entirely. Suddenly you're right there in the action, punching bad guys square in the jaw and rescuing innocents before they fall prey to the schemes of twisted villains. Whether these heroes were borne of comics or games, playing as them is a joy as you save the day time and again.
+				{% endif %}
+				{% if catName.catName == "Racing" %}
+					The racing video game genre is the genre of video games, either in the first-person or third-person perspective, in which the player partakes in a racing competition with any type of land, water, air or space vehicles. ... Racing games may also fall under the category of sports games.
+				{% endif %}
+			</p>
+		</div>
 	<div class="row justify-content-center">
 		<div class="col-4">
 			<h3>Games!</h3>
@@ -62,5 +80,12 @@
 		</div>
 	</div>
 </div>
-	<a href="{% url 'playerhq:review' catName.slug %}" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Make review</a>
+<div class="trans">
+	<p class = "para">
+	Like any of the above reviews? <a href="https://www.howtogeek.com/300416/10-alternatives-to-steam-for-buying-cheap-pc-games/"> Click here</a> and you'll be directed to a list of pages where you can buy these games for a cheap price!
+</p>
+</div>
+	{% if user.is_authenticated %}
+	<a href="{% url 'playerhq:addGame' catName.slug %}" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Add a Game!</a>
+	{% endif %}
 {% endblock %}

@@ -33,7 +33,7 @@ class Games(models.Model):
     
     GameName = models.CharField(max_length=TITLE_MAX_LENGTH, default ="")
     GameRating = models.IntegerField(default=0)
-    GameImage = models.ImageField(upload_to='images/', blank=True)
+    GameImage = models.ImageField(upload_to='images', blank=True)
     Gamedescription = models.TextField(max_length = 200)
     GameCategory = models.CharField(max_length=50)
     
@@ -50,10 +50,10 @@ class Reviews(models.Model):
     TITLE_MAX_LENGTH = 128
     
     #user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    games = models.ForeignKey(Games, on_delete=models.CASCADE)
+    #games = models.ForeignKey(Games, on_delete=models.CASCADE)
     #ReviewID = models.IntegerField(default=0, primary_key=True)
     GameName = models.CharField(max_length=TITLE_MAX_LENGTH, default ="")
-    GameImage = models.ImageField(upload_to='images/', blank=True)
+    GameImage = models.ImageField(upload_to='images', blank=True)
     ReviewerName = models.CharField(max_length=TITLE_MAX_LENGTH)
     Review = models.TextField(max_length = 200)
     Graphics = models.IntegerField(default=0)
@@ -70,20 +70,3 @@ class Reviews(models.Model):
     def __str__(self):
         return self.ReviewerName
     
-class Comments(models.Model):
-    TITLE_MAX_LENGTH = 128
-    
-    reviews = models.ForeignKey(Reviews, on_delete=models.CASCADE)
-    #Commentgame = models.ForeignKey(Reviews, on_delete=models.CASCADE)
-    GameName = models.CharField(max_length=TITLE_MAX_LENGTH, default ="")
-    CommentName = models.CharField(max_length=TITLE_MAX_LENGTH)
-    Comments = models.TextField(max_length = 200, blank = True)
-    
-    #slug = models.SlugField(blank=True)
-    
-    #def save(self, *args, **kwargs):
-     #   self.slug = slugify(self.GameName)
-      #  super(Comments, self).save(*args, **kwargs)
-    
-    def __str__(self):
-        return self.GameName

@@ -1,9 +1,6 @@
 from django.contrib import admin
 
-from playerhq.models import Games,Reviews,Comments
-
-class comments(admin.ModelAdmin):
-    list_display = ('GameName','CommentName','Comments')
+from playerhq.models import Games,Reviews
     
 class game(admin.ModelAdmin):
     list_display = ('GameName','GameCategory')
@@ -13,4 +10,3 @@ class review(admin.ModelAdmin):
 
 admin.site.register(Reviews,review)
 admin.site.register(Games, game)
-admin.site.register(Comments,comments )

@@ -8,17 +8,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="{% static 'css/new7.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/new12.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body class="p-3 mb-2 bg-dark text-white" background="{% static 'images/background.jpg' %}" style = "background-repeat: no-repeat;
   background-attachment: fixed;">
   <div class=”main-container”>
 	<header>
 		<img src="{% static 'images/new22.png' %}" alt="Logo" />
-		<input class="butt" onclick="window.location.href ='{% url 'playerhq:login' %}';" type="submit" value="Log in"/>
-		<input class="butt2" type="submit" onclick="window.location.href={% url 'playerhq:index' %};" value="Home"/>
-  		<input class="butt1" onclick="window.location.href ='{% url 'playerhq:signup' %}';" type="submit" value="Sign in"/>
+		{% if user.is_authenticated %}
+		<input class="butt" type="submit" onclick="window.location.href={% url 'playerhq:index' %};" value="Home"/>
   		<input class="butt3" onclick="window.location.href ='{% url 'playerhq:logout' %}';" type="submit" value="Logout"/>
+		{% else %}
+		<input class="butt" type="submit" onclick="window.location.href={% url 'playerhq:index' %};" value="Home"/>
+		<input class="butt2" onclick="window.location.href ='{% url 'playerhq:login' %}';" type="submit" value="Log in"/>
+  		<input class="butt1" onclick="window.location.href ='{% url 'playerhq:signup' %}';" type="submit" value="Sign up"/>
+		{% endif %}
 		<span style="font-family: 'Lobster', cursive; font-size: 42px;  color: #FFFFFF; font-weight: bold;">
   		{% if user.is_authenticated %}
 		Welcome {{ user.username }}, to the PlayersHQ!
@@ -59,6 +63,10 @@
 				<div class="col">
 					<a href="https://www.instagram.com/areeb_babar.21/?hl=en" class="fa fa-instagram"></a>
 					<span>areeb_babar.21</span>
+				</div>
+				<div class="col">
+					<a href="#" class="fa fa-youtube"></a>
+					<span>Aaron Hundal</span>
 				</div>
 			</div>
 		</div>

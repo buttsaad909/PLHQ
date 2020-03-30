@@ -63,7 +63,7 @@
 			display: inline-block;
 			font-size: 18px;
 			position: relative;
-			margin: 185px -120px;
+			margin: 65px -120px;
 			cursor: pointer;
 			display: block;
 		}
@@ -169,12 +169,6 @@
 
 		a.lio:hover, a.lio:active {
 		  background-color: red;
-		}
-
-		.para {
-			font-family: monospace;
-			font-size: 22px;
-			font-weight: bold;
 		}
 		.checked {
 		  color: orange;
@@ -357,7 +351,9 @@
 		.fa:hover {
 		    opacity: 0.7;
 		}
-
+		.fa-youtube {
+		  color: white;
+		}
 		.fa-facebook {
 		  color: white;
 		}
@@ -381,3 +377,54 @@
 		 position: relative;
 		 padding-bottom: 100px; /* height of your footer */
 		}
+
+		.center_alinged {
+			text-align: center; 
+			font-size: 25px;
+		}
+
+		.side_aligned {
+			font-size: 25px;
+			text-align: justify;
+  			text-justify: inter-word;
+		}
+
+
+		div.trans {
+		  padding: 30px;
+		  background-color: #ffffff;
+		  border: 1px solid black;
+		  opacity: 0.6;
+		}
+
+		div.trans  {
+		  margin: 3%;
+		  font-weight: bold;
+		  color: #000000;
+		  font-family: monospace;
+		  font-size: 25px;
+		}
+
+		.para {
+			font-family: monospace;
+			font-size: 22px;
+			font-weight: bold;
+			text-align: justify;
+  			text-justify: inter-word;		
+  		}
+  		hr.solid {
+		  border-top: 3px solid #000000;
+		}
+
+		 .pb-cmnt-container {
+	        font-family: Lato;
+	        margin-top: 100px;
+	    }
+
+	    .pb-cmnt-textarea {
+	        resize: none;
+	        padding: 20px;
+	        height: 130px;
+	        width: 100%;
+	        border: 1px solid #F2F2F2;
+	    }

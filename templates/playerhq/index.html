@@ -7,11 +7,13 @@
 
 {% block body_block %}
 <div class="container">
-	<p class = "para" bg = "white">
+	<div class="trans">
+	<p class = "para">
 		Welcome to the Player Head Quarters! Brace yourself players, a huge wave of reviews lies ahead from this point on. You have your last chance to equip yourself with all the knowledge and games that you may end up facing. 
 		PlayerHQ is the favourite page for hardcore gamers who are interested in finding games that suit their taste and interests and if anyone who is new to gaming finds this wonderful hub with tons of gamng reviews written by professioal gamers, experience authors and the writers who want to promote their games!
 		So we won't take much of your time, hence, to get you started, here is a list of the top rated games you guys should check out!
 	</p>
+	</div>
 	<div  class="row">
 		<div class="col">
 			<h1 style="font-family: monospace;">Leaderboard</h1>
@@ -33,7 +35,7 @@
 		<div class="col">
 		    {% if topGame %}
 			<h3>Leading Game: {{topGame.GameName}}</h3>
-			<img src="{{ topGame.GameImage.url }}" class="img-responsive" style="height: 300px; width: 270px; border: 5px solid #000000;"/>
+			<img src="{{ topGame.GameImage.url }}" class="img-responsive" style="height: 300px; width: 400px; border: 5px solid #000000;"/>
 			{% endif %}
 		</div>
 	</div>

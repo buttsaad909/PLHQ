@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
-from playerhq.models import Games, Reviews, Categories,Comments
+from playerhq.models import Games, Reviews, Categories
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from playerhq.forms import UserForm, UserProfileForm, Review, GameForm
@@ -28,12 +28,10 @@ def game(request, game_name_slug):
     try:
         game = Games.objects.get(slug=game_name_slug)
         allReviews = Reviews.objects.order_by('ReviewerName')
-        comment = Comments.objects.order_by('GameName')
         reviews = []
         for review in allReviews:
             if review.GameName == game.GameName:
                 reviews = reviews + [review]
-        context_dict['comments'] = comment
         context_dict['reviews'] = reviews
         context_dict['game'] = game
     except Games.DoesNotExist:
@@ -61,6 +59,8 @@ def category(request, category_name_slug):
 
     context_dict['categories'] = Categories.objects.order_by('catName')
 
+  #  print(context_dict['games'])
+
     return render(request, 'playerhq/category.html', context_dict)
 
 def user_login(request):
@@ -82,46 +82,34 @@ def user_login(request):
     else:
         return render(request, 'playerhq/login.html')
 
-#def display_game_images(request): 
-  
-#    if request.method == 'GET': 
-  
-        # getting all the objects of hotel. 
-#        Games = Games.objects.get('GameImage')  
-#        return render((request, 'playerhq/index.html', 
-#                     {'games_images' : Games})) 
 
-@login_required
-def review(request, category_name_slug):
-    registered = False
-    try:
-        category = Categories.objects.get(slug=category_name_slug)
-        category2 = Reviews.objects.all()
-    except Games.DoesNotExist:
-        category = None
-    
-    # You cannot add a page to a Category that does not exist...
-    if category is None:
-        return redirect('/playerhq/')
-    
-    form = Review()
+def addGame(request, category_name_slug):
     form2 = GameForm()
+    form = Review()
+    category = Categories.objects.get(slug=category_name_slug)
+
     if request.method == 'POST':
-        form = Review(request.POST )
         form2 = GameForm(request.POST)
+        form = Review(request.POST)
         if form.is_valid() and form2.is_valid():
-            form.save(commit= True)
-            profile = form2.save(commit=True)
-            if 'GameImage'in request.FILES:
-                profile.GameImage = request.FILES['picture']
-            profile.save()
-            registered = True
-            return redirect(reverse('playerhq:category', kwargs=
-                                        {'category_name_slug': category_name_slug}))
+            game = form2.save(commit=False)
+            review = form.save(commit=False)
+            
+            review.GameName = game.GameName
+            review.save()
+            
+            image = request.FILES['GameImage']
+            game.GameImage = image
+            game.save()
+            return redirect(reverse('playerhq:index'))
         else:
-            print(form.errors, form2.errors)
-    context_dict = {'form': form, 'category': category, 'game': category2, 'form2':form2, 'registered': registered}
-    return render(request, 'playerhq/review.html', context=context_dict)
+            print(form.errors)
+            print(form2.errors)
+
+    return render(request, 'playerhq/addGame.html',
+                  context = {'form': form,
+                             'form2' : form2,
+                             'category': category})
 
 def signup(request):
     registered = False

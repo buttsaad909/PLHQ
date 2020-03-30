@@ -7,45 +7,231 @@
 {% endblock %}
 
 {% block body_block %}
-
-	<h1> Game Review </h1>
+	
 	{% for review in reviews %}
-	<div>
-	<img src="{{ game.GameImage.url }}" class="img-responsive" style=" float: left; margin-right: 10px; border: 5px solid #000000;" />
-	</div>
 	<div class="container">
-			<h2>{{review.GameName}}</h2><br/>
-			<p>Rating: {{ game.GameRating }} </p>
-		<p> Category: {{ game.GameCategory }} </p>
-		<p> Description: {{ game.Gamedescription }} </p>
-		<hr> </hr>
-		</div>
-		<div>
-			{{review.ReviewerName}}:</br>
-			Graphics: {{review.Graphics}}</br>
-			Storyline: {{review.Storyline}}</br>
-			Gameplay: {{review.Gameplay}}</br>
-			{{review.Review}} <br/>
-		</div>
-			<hr></hr>
+		<div class="row">
+			<div class=".col-6 .col-sm-4">
+				<div class="trans">
+				<hr class="solid"> 
+				<h1 style="text-align: center; ">{{review.GameName}}</h1>
+				<hr class="solid"> 
+				<img src="{{ game.GameImage.url }}" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
+				<hr class="solid"> 
+				<div class="center_alinged">
+					<div>
+						Overall Rating: 
+						<span>
+						{% if game.GameRating == 1 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if game.GameRating == 2 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if game.GameRating == 3 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if game.GameRating == 4 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if game.GameRating == 5 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+							{% endif %}
+						</span>
+					</div>
+					<div>
+						Graphics: 
+						<span>
+						{% if review.Graphics == 1 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Graphics == 2 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Graphics == 3 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Graphics == 4 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Graphics == 5 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+							{% endif %}
+						</span>
+					</div>
+					<div>
+						Storyline: 
+						<span>
+						{% if review.Storyline == 1 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Storyline == 2 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Storyline == 3 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Storyline == 4 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Storyline == 5 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+							{% endif %}
+						</span>
+					</div>
 
-	{% for com in comments %}
-		{% if com.GameName == review.GameName %}
-		<p>
-		Comments:<br/>
-		{{com.CommentName}}<br/>
-		{{com.Comments}}
-		</p>
-		{% endif%}
-	{%endfor%}
-	{% endfor %}
-<hr> </hr>
-	<!--
-	{% for gam in games_images %} 
-        <div class="col-md-4"> 
-            {{ gam.name }} 
-            <img src="{{ gam.games_images.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /> 
-        </div> 
-    {% endfor %} 
-	-->
+					<div>
+						Gameplay: 
+						<span>
+						{% if review.Gameplay == 1 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Gameplay == 2 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Gameplay == 3 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Gameplay == 4 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+							{% endif %}
+							{% if review.Gameplay == 5 %}
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+							{% endif %}
+						</span>
+					</div>
+
+					<hr class="solid">
+					<h2> Game Overview  </h2>
+					<hr class="solid"> 
+
+					<p class="side_aligned">{{ game.Gamedescription }}</p>
+					<hr class="solid"> 
+					<h2>Reviews</h2>
+					<hr class="solid"> 
+					<div class="side_aligned">
+						{{review.ReviewerName}}:
+					</div>
+					<br/>
+					<div class="side_aligned">
+						{{review.Review}} <br/>
+					</div>
+					<hr class="solid">
+			
+				<h2>Comments Section</h2>
+				<hr class="solid">
+		{% if user.is_authenticated %}
+			<script type="text/javascript" src="{% static 'javascript/java.js' %}"></script>
+			<div class="side_aligned">
+			<button class="btn btn-primary" onClick="saveComment()">Post Comment </button>
+			<button class="btn btn-primary" onClick="bindCmt()">View all the Comments (if any) </button>
+			<div id="dtext">
+			  <input id="namebox" type="text" maxlength="32" size="20" placeholder="Name" />
+			  <br />
+			  <textarea id="txt1" class="textbox" rows="4" cols="50" placeholder="Your comment"></textarea>
+			</div>
+
+			<h4>Comments</h4>
+			<div id="cmtlist"></div>		 
+			
+				{% for com in commen %}
+					{% if com.GameName == review.GameName %}
+					<p class="side_aligned">
+					{{com.CommentName}}<br/>
+					{{com.CommentText}}
+					</p>
+					{% endif%}
+				{%endfor%}
+			</div>
+		{% else %}
+		<p> You Need to logged in to view and make the comments! sorry :)</p>
+		{% endif %}
+
+		{% endfor %}
+		<hr class="solid"> 
+		</div>
+		</div>
+	</div>
+	</div>
+</div>
 {% endblock %}
