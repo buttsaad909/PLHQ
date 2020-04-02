@@ -1,7 +1,9 @@
 from django.contrib import admin
 
 from playerhq.models import Games,Reviews
-    
+
+# These models and their values are displayed on the playerhq admin page
+
 class game(admin.ModelAdmin):
     list_display = ('GameName','GameCategory')
     

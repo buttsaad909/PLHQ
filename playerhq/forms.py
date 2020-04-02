@@ -2,6 +2,9 @@ from django import forms
 from playerhq.models import Users, Games, Reviews
 from django.contrib.auth.models import User
 
+'''
+Form for user sign up.
+'''
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     
@@ -9,11 +12,21 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'password',)
 
+'''
+Form for user sign up.
+Allows for profile customisation. E.g. Adding a picture
+'''
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Users
         fields = ( 'picture',)
-        
+
+'''
+A form for adding a game
+Users must add a unique game name, a description, a rating, a category.
+Users may add an image for a game, otherwise the game will be given a default
+image.
+'''        
 class GameForm(forms.ModelForm): 
     INTEGER_CHOICES= [tuple([x,x]) for x in range(1,6)]
     GAME_CHOICES= [
@@ -32,18 +45,20 @@ class GameForm(forms.ModelForm):
         model = Games 
         fields = ('GameName', 'GameImage', 'GameCategory','GameRating', 'Gamedescription',)
 
+    # Checks if the game name is unique and flags an error if it is not.
     def clean(self):
-        #data from the form is fetched using super functionn
         super(GameForm, self).clean()
         
-        # extract the username and text field from the data
         game = self.cleaned_data['GameName']
         
-        #conditions to be met for the username length
         if Games.objects.filter(GameName=game).exists():
             self._errors['GameName'] = self.error_class(['Game name already exits'])
         return self.cleaned_data
-        
+
+'''
+A form for adding a review.
+Users must add their name, the review, adn ratings for gameplay, storyline and graphics
+'''     
 class Review(forms.ModelForm):
     INTEGER_CHOICES= [tuple([x,x]) for x in range(1,6)]
     

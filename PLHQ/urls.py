@@ -24,6 +24,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('playerhq/about/', views.about, name='about'),
     path('playerhq/', include('playerhq.urls')),
-    # The above maps any URLs starting with rango/ to be handled by rango.
+    # The above maps any URLs starting with playerhq/ to be handled by playerhq
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  
